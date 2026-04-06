@@ -1,9 +1,3 @@
 This is the ReadME
 
-Link to render: https://dashboard.render.com/web/srv-d72q3e4g9agc73c1eofg/deploys/dep-d72q3ecg9agc73c1eou0?r=2026-03-26%4021%3A13%3A33%7E2026-03-26%4021%3A16%3A13
-
-
-##Class: Eggs
-- bird_type (string)
-- color (string)
-- size (string)
+Link to render: https://dashboard.render.com/web/srv-d79t0dqdbo4c73ainpfg/deploys/dep-d79t0eadbo4c73ainpug?r=2026-04-06%4015%3A23%3A41%7E2026-04-06%4015%3A27%3A13
