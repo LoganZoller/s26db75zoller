@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  p Logan Zoller eggs class server
+  
+  -
+    let results = [{bird_type: "cardinal", color: 'freckled-gray', size: "small"}, 
+      {bird_type: "ostrich", color: "ivory", size: "very large"},
+      {bird_type: "chicken", color: "white", size: "medium"}]
+
+  .container-fluid
+    .row
+      each item in results
+        .col-sm-2
+          p Bird: #{item.bird_type}  Color: #{item.color}  Size: #{item.size}
