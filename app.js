@@ -1,9 +1,3 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
 require('dotenv').config();
 const connectionString = process.env.MONGO_CON;
 mongoose = require('mongoose');
@@ -15,7 +9,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once("open", function() {
   console.log("Connection to DB succeeded")});
 
-var Egg = require("./models/egg");
+var Egg = require("./models/eggSchema");
 
 async function recreateDB() {
   await Egg.deleteMany();
@@ -44,6 +38,13 @@ async function recreateDB() {
 }
 let reseed = true;
 if (reseed) {recreateDB();}
+
+
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
