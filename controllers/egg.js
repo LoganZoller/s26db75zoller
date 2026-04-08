@@ -26,7 +26,7 @@ exports.egg_update_put = function(req, res) {
 exports.egg_view_all_Page = async function(req, res) {
     try {
         theEggs = await Egg.find();
-        res.render('eggs', {title: 'Egg Search Results', results: theEggs});
+        res.render('egg', {title: 'Egg Search Results', results: theEggs});
     }
     catch(err) {
         res.status(500);
