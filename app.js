@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 require('dotenv').config();
 const connectionString = process.env.MONGO_CON;
-mongoose = require('mongoose');
+const mongoose = require('mongoose');
 mongoose.connect(connectionString);
 
 const db = mongoose.connection;
@@ -18,35 +18,30 @@ db.once("open", function() {
 const Egg = require("./models/eggSchema");
 
 async function recreateDB() {
-  await Egg.deleteMany();
+  try {
+    await Egg.deleteMany();
 
-  let instance1 = new Egg({bird_type: "cardinal", color: 'freckled-gray', size: "small"});
-  let instance2 = new Egg({bird_type: "ostrich", color: "ivory", size: "very large"});
-  let instance3 = new Egg({bird_type: "chicken", color: "white", size: "medium"});
+    let instance1 = new Egg({bird_type: "cardinal", color: 'freckled-gray', size: "small"});
+    let instance2 = new Egg({bird_type: "ostrich", color: "ivory", size: "very large"});
+    let instance3 = new Egg({bird_type: "chicken", color: "white", size: "medium"});
 
-  instance1.save().then(doc=>{
-    console.log("First object saved")}
-  ).catch(err=>{
-    console.error(err)
-  });
+    await instance1.save();
+    console.log("First object saved");
 
-  instance2.save().then(doc=>{
-    console.log("Second object saved")}
-  ).catch(err=>{
-    console.error(err)
-  });
+    await instance2.save();
+    console.log("Second object saved");
 
-  instance3.save().then(doc=>{
-    console.log("Third object saved")}
-  ).catch(err=>{
-    console.error(err)
-  });
+    await instance3.save();
+    console.log("Third object saved");
+  
+  } catch (err) {
+    console.error(err);
+  }
 }
 let reseed = true;
 if (reseed) {
   recreateDB();
 }
-
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
