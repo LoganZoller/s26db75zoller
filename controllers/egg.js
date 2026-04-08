@@ -1,7 +1,15 @@
 var Egg = require('../models/eggSchema');
 
-exports.egg_list = function(req, res) {
-    res.send('NOT IMPLEMENTED: Egg list');
+
+exports.egg_list = async function(req,res) {
+    try {
+        theEggs = await Egg.find();
+        res.send(theEggs);
+    }
+    catch(err) {
+        res.status(500);
+        res.send(`{"error":${err}}`);
+    }
 }
 exports.egg_detail = function(req, res) {
     res.send('NOT IMPLEMENTED: Egg detail: ' + req.params.id);
