@@ -14,8 +14,20 @@ exports.egg_list = async function(req,res) {
 exports.egg_detail = function(req, res) {
     res.send('NOT IMPLEMENTED: Egg detail: ' + req.params.id);
 }
-exports.egg_create_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Egg create POST');
+exports.egg_create_post = async function(req, res) {
+    console.log(req.body)
+    let document = new Egg();
+    document.bird_type = req.body.bird_type;
+    document.color = req.body.color;
+    document.size = req.body.size;
+    try{
+        let result = await document.save();
+        res.send(result);
+    }
+    catch(err) {
+        res.status(500);
+        res.send(`{"error":${err}}`);
+    }
 }
 exports.egg_delete = function(req, res) {
     res.send('NOT IMPLEMENTED: Egg delete DELETE ' + req.params.id);
