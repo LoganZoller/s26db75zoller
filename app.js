@@ -1,19 +1,8 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
 require('dotenv').config();
 const connectionString = process.env.MONGO_CON;
 const mongoose = require('mongoose');
+console.log("Mongo URI:", process.env.MONGO_CON);
 mongoose.connect(connectionString);
-
-const db = mongoose.connection;
-
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once("open", function() {
-  console.log("Connection to DB succeeded")});
 
 const Egg = require("./models/eggSchema");
 
@@ -42,6 +31,12 @@ let reseed = true;
 if (reseed) {
   recreateDB();
 }
+
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
