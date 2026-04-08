@@ -23,3 +23,13 @@ exports.egg_delete = function(req, res) {
 exports.egg_update_put = function(req, res) {
     res.send('NOT IMPLEMENTED: Egg update PUT' + req.params.id);
 }
+exports.egg_view_all_Page = async function(req, res) {
+    try {
+        theEggs = await Egg.find();
+        res.render('eggs', {title: 'Egg Search Results', results: theEggs});
+    }
+    catch(err) {
+        res.status(500);
+        res.send(`{"error":${err}}`);
+    }
+}
