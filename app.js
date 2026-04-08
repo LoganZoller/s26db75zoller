@@ -58,7 +58,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('./resource', resourceRouter);
+app.use('/resource', resourceRouter);
 app.use('/users', usersRouter);
 app.use('/egg', eggRouter);
 app.use('/grid', gridRouter);
