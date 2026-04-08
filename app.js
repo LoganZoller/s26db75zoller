@@ -9,13 +9,13 @@ const connectionString = process.env.MONGO_CON;
 mongoose = require('mongoose');
 mongoose.connect(connectionString);
 
-var db = mongoose.connection;
+const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once("open", function() {
   console.log("Connection to DB succeeded")});
 
-var Egg = require("./models/eggSchema");
+const Egg = require("./models/eggSchema");
 
 async function recreateDB() {
   await Egg.deleteMany();
@@ -43,7 +43,10 @@ async function recreateDB() {
   });
 }
 let reseed = true;
-if (reseed) {recreateDB();}
+if (reseed) {
+  recreateDB();
+}
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
