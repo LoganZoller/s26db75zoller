@@ -39,6 +39,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
+var resourceRouter = require('./routes/resource'); 
 var usersRouter = require('./routes/users');
 var eggRouter = require('./routes/egg');
 var gridRouter = require('./routes/grid');
@@ -57,6 +58,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('./resource', resourceRouter);
 app.use('/users', usersRouter);
 app.use('/egg', eggRouter);
 app.use('/grid', gridRouter);
