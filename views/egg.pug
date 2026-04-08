@@ -6,7 +6,8 @@ block content
   
   - let items = results
 
-  ul
-    each item in items
-      li
-        | #{item.bird_type} | #{item.color} | #{item.size}
+  .container-fluid
+    .row
+      each item in results
+        .col-sm-2
+          p Bird: #{item.bird_type}  Color: #{item.color}  Size: #{item.size}
