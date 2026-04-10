@@ -40,6 +40,7 @@ exports.egg_delete = function(req, res) {
     res.send('NOT IMPLEMENTED: Egg delete DELETE ' + req.params.id);
 }
 exports.egg_update_put = async function(req, res) {
+    console.log("BODY:", req.body);
     console.log(`update on id ${req.params.id} with body ${JSON.stringify(req.body)}`)
     try {
         let toUpdate = await Egg.findById(req.params.id)
