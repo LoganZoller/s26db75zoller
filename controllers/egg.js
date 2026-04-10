@@ -14,7 +14,7 @@ exports.egg_list = async function(req,res) {
 exports.egg_detail = async function(req, res) {
     console.log("detail" +req.params.id)
     try {
-        result = await Costume.findById(req.params.id)
+        result = await Egg.findById(req.params.id)
         res.send(result)
     } catch (error) {
         res.status(500)
