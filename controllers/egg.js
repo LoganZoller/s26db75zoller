@@ -36,8 +36,16 @@ exports.egg_create_post = async function(req, res) {
         res.send(`{"error":${err}}`);
     }
 }
-exports.egg_delete = function(req, res) {
-    res.send('NOT IMPLEMENTED: Egg delete DELETE ' + req.params.id);
+exports.egg_delete = async function(req, res) {
+    console.log("delete" + req.params.id)
+    try {
+        result = await Egg.findByIdAndDelete( req.params.id)
+        console.log("Removed " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": Error deleting ${err}}`);
+    }
 }
 exports.egg_update_put = async function(req, res) {
     console.log("BODY:", req.body);
