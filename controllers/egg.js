@@ -74,3 +74,14 @@ exports.egg_view_all_Page = async function(req, res) {
         res.send(`{"error":${err}}`);
     }
 }
+exports.egg_view_one_Page = async function (req,res) {
+    console.log("single view for id " + req.query.id)
+    try{ 
+        result = await Egg.findById(req.query.id)
+        res.render('eggdetail', 
+            { title: 'Egg Detail', toShow: result });
+    } catch (err) {
+        res.status(500)
+        res.send(`{'error': ${err}'}`);
+    }
+}
