@@ -11,7 +11,7 @@ block content
         div.row(class='mb-2')
             div.mr-1 ID is
             div #{eggid}
-    - let actionid = "/resouce/egg/" + eggid
+    - let actionid = "/resource/egg/" + eggid
     form(id='EggForm', action=actionid, method="PUT")
         div.form-group
             label.eggAttr(for='bird_type') Bird type
