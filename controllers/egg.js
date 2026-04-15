@@ -92,7 +92,7 @@ exports.egg_create_Page = function (req, res) {
     }
     catch(err) {
         res.status(500)
-        res.send(` {'error':'${err}'}`);
+        res.send(`{'error':'${err}'}`);
     }
 }
 exports.egg_update_Page = async function (req, res) {
