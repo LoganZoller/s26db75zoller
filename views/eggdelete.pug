@@ -1,6 +1,6 @@
 extends layout
 block content
-    h1= title
+    h1 Egg Create Page
     if (toShow == null)
         h2 No instance to delete
     else
@@ -9,7 +9,8 @@ block content
         - let eggcolor = toShow.color
         - let eggsize = toShow.size
         - let actionid = "/resource/egg/" + eggid
-        script let actionid = "#{actionid}"
+        script. 
+            let actionid = "#{actionid}"
         div
             div.row
                 div(class='eggAttr mr-3') Egg ID is:
@@ -35,7 +36,6 @@ block content
     script.
         function deleteOnid() {
             console.log("starting delete")
-// delete first
             fetch(actionid, {
                 method: 'DELETE'
             }).then((resp) => {
