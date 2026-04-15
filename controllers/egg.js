@@ -85,3 +85,13 @@ exports.egg_view_one_Page = async function (req,res) {
         res.send(`{'error': ${err}'}`);
     }
 }
+exports.egg_create_Page = function (req, res) {
+    console.log("create view")
+    try {
+        res.render('eggcreate', {title: 'Egg Create'});
+    }
+    catch(err) {
+        res.status(500)
+        res.send(` {'error':'${err}'}`);
+    }
+}

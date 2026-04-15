@@ -1,0 +1,32 @@
+extends layout
+
+block content
+    h1 Egg Create Page
+
+    form(id='EggFrom', action="/resource/egg", method="POST")
+        div.form-group
+            label.eggAttr(for='bird_type') Bird type
+            input#bird_type(type='text', name='bird_type')
+        div.form-group
+            label.eggAttr(for='color') Egg color
+            input#size(type='text', name='size')
+        div.form-group
+            label.eggAttr(for='size') Egg size
+            input#size(type='text', name='cost')
+        input(type="submit")
+    
+    script.
+        document.forms['EggForm'].addEventListener('submit', (event) => {
+            event.preventDefault();
+            fetch(event.target.action, {
+                method:'POST',
+                body: new URLSearchParams(new FormData(event.target))
+            }).then((resp) => {
+                return resp.json();
+            }).then((body) => {
+                alert("Save succeeded")
+            }).catch((error) => {
+                alert("Save failed " + error)
+            })
+        })
+
