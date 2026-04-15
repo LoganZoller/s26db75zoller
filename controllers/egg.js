@@ -95,7 +95,7 @@ exports.egg_create_Page = function (req, res) {
         res.send(` {'error':'${err}'}`);
     }
 }
-exports.egg_create_Page = async function (req, res) {
+exports.egg_update_Page = async function (req, res) {
     console.log("Update view for item " + req.query.id)
     try {
         let result = await Egg.findById(req.query.id)
