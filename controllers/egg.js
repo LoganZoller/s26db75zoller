@@ -105,3 +105,13 @@ exports.egg_update_Page = async function (req, res) {
         res.send(`{'error':'${err}'}`);
     }
 }
+exports.egg_delete_Page = async function (req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try {
+        result = await Egg.findById(req.query.id)
+        res.render('eggdelete', { title: 'Egg Delete', toShow: result })
+    } catch(err) {
+        res.status(500)
+        res.send(`{'error':'${err}'}`);
+    }
+}
