@@ -1,25 +1,34 @@
 extends layout
 
 block content
-    h1 Egg Create Page
+    h1 Egg Update Page
 
-    form(id='EggForm', action="/resource/egg", method="POST")
+    - let eggid = toShow._id
+    - let bird_type = toShow.bird_type
+    - let eggcolor = toShow.color
+    - let eggsize = toShow.size
+
+        div.row(class='mb-2')
+            div.mr-1 ID is
+            div #{eggid}
+    - let actionid = "/resouce/egg/" + eggid
+    form(id='EggForm', action=actionid, method="PUT")
         div.form-group
             label.eggAttr(for='bird_type') Bird type
-            input#bird_type(type='text', name='bird_type')
+            input#bird_type(type='text', name='bird_type', value=bird_type)
         div.form-group
             label.eggAttr(for='color') Egg color
-            input#size(type='text', name='size')
+            input#size(type='text', name='size', value=color)
         div.form-group
             label.eggAttr(for='size') Egg size
-            input#size(type='text', name='cost')
+            input#size(type='text', name='cost', value=size)
         input(type="submit")
     
     script.
         document.forms['EggForm'].addEventListener('submit', (event) => {
             event.preventDefault();
             fetch(event.target.action, {
-                method:'POST',
+                method:'PUT',
                 body: new URLSearchParams(new FormData(event.target))
             }).then((resp) => {
                 return resp.json();
@@ -29,4 +38,3 @@ block content
                 alert("Save failed " + error)
             })
         })
-

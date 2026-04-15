@@ -95,3 +95,13 @@ exports.egg_create_Page = function (req, res) {
         res.send(` {'error':'${err}'}`);
     }
 }
+exports.egg_create_Page = async function (req, res) {
+    console.log("Update view for item " + req.query.id)
+    try {
+        let result = await Egg.findById(req.query.id)
+        res.render('eggupdate', { title: 'Egg Update', toShow: result })
+    } catch(err) {
+        res.status(500)
+        res.send(` {'error': '${err}'}`);
+    }
+}
