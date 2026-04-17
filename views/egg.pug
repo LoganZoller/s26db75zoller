@@ -1,13 +1,13 @@
 extends layout
 
 block content
-  h1= title
+  h1 Eggs 
   p Logan Zoller eggs class server
   
   - let items = results
 
-  .container-fluid
-    .row
+  div(class="container-fluid")
+    div(class="row")
       each item in results
-        .col-sm-2
-          p Bird: #{item.bird_type}  Color: #{item.color}  Size: #{item.size}
+        div(class="row-sm-2", class="m-1")Item#{item.bird_type}(#{item.color}) is #{item.size}
+        a.btn.btn-primary(href=`/resource/egg/${item._id}/update`) Update
