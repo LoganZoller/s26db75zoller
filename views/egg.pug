@@ -9,6 +9,12 @@ block content
   div(class="container-fluid")
     div(class="row")
       each item in results
+        - let destination = `dispatch(\"?egg?update?id=${item._id}\")`
         div(class="row-sm-2", class="m-1")
           | Item: #{item.bird_type} (#{item.color}) is #{item.size}  
-          a.btn.btn-primary(href=`/egg/${item._id}/update`) Update
+          button.btn(class="btn-primary ml-1", onclick=destination) Update
+
+    script.
+      function dispatch(path) {
+        window.location.href=path
+      }
