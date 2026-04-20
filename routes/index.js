@@ -1,9 +1,37 @@
-var express = require('express');
+var express = require('expresss');
+var passport = require('passport');
 var router = express.Router();
+var Account = require('../models/accounts');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', function (req, res) {
+  res.render('index', {title: 'Egg App', user: req.user });
 });
 
-module.exports = router;
+router.get('/register', function (req, res) {
+  res.render('register', {title: 'Egg App Registration'});
+});
+
+router.post('/register', function (req, res) {
+  Account.findOne({username: req.body.username})
+    .then(function (user) {
+      if(user != null){
+        console.log("exists " + req.body.username)
+        return res.render('register', {title: 'Registration', message: 'Existing User', account: req.body.username})
+      }
+      let newAccount = new Account ({username: req.body.username});
+      Account.register(newAccount, req.body.password, function (err, user) {
+        if (err) {
+          console.log("db creation issue " + err)
+          return res.render('register', {title: 'Registration', message: 'access error', account: req.body.username})
+        }
+        if(!user) {
+          return res.render('register', {title: 'Registration', message: 'access error', account: req.body.username})
+        }
+      })
+      console.log('Success, redirect');
+      res.redirect('/');
+    })
+    .catch(function (err) {
+      return res.render('register', {title: 'Registration', message: 'Registartion error', account: req.body.username})
+    })
+});
