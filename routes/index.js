@@ -32,7 +32,7 @@ router.post('/register', function (req, res) {
       res.redirect('/');
     })
     .catch(function (err) {
-      return res.render('register', {title: 'Registration', message: 'Registartion error', account: req.body.username})
+      return res.render('register', {title: 'Registration', message: 'Registration error', account: req.body.username})
     })
 });
 
@@ -44,7 +44,7 @@ router.post('/login', passport.authenticate('local'), function(req, res) {
   res.redirect('/');
 });
 
-router.get('/logout', function(req, res) {
+router.get('/logout', function(req, res, next) {
   req.logout(function(err) {
     if (err) {
       return next(err); 
