@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const passportLocalMongoose = require('passport-local-mongoose');
+const passportLocalMongoose = require('passport-local-mongoose').default;
 
 console.log("Value: ", passportLocalMongoose);
 console.log("TYPE: ", typeof passportLocalMongoose);
-
 const accountSchema = new Schema({
     username: String,
     password: String
