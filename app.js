@@ -93,7 +93,7 @@ app.use('/egg', eggRouter);
 app.use('/grid', gridRouter);
 app.use('/pick', pickRouter);
 
-var Account=require('./models/account');
+var Account=require('./models/accounts');
 passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
