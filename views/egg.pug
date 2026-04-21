@@ -9,7 +9,7 @@ block content
   div(class="container-fluid")
     div(class="row")
       each item in results
-        - let destination = `dispatch(\"?egg?update?id=${item._id}\")`
+        - let destination = `dispatch("/egg/${item._id}/update")`
         div(class="row-sm-2", class="m-1")
           | Item: #{item.bird_type} (#{item.color}) is #{item.size}  
           button.btn(class="btn-primary ml-1", onclick=destination) Update
