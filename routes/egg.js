@@ -4,6 +4,8 @@ var router = express.Router();
 var passport = require('passport');
 
 const secured = (req, res, next) => {
+    console.log("🔐 SECURED HIT");
+    console.log("User:", req.user);
     if (req.user) {
         return next();
     }
