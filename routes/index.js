@@ -40,9 +40,7 @@ router.get('/login', function(req, res) {
   res.render('login', {title: 'Egg App Login', user: req.user});
 });
 
-router.post('/login', passport.authenticate('local'), function(req, res) {
-  res.redirect('/login');
-});
+router.post('/login', passport.authenticate('local', {successRedirect: '/', failureRedirect: '/login'}));
 
 router.get('/logout', function(req, res, next) {
   req.logout(function(err) {
