@@ -40,7 +40,7 @@ var logger = require('morgan');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-passport.use(new LocalStrategy(
+/*passport.use(new LocalStrategy(
   function(username, password, done) {
     Account.findOne({ username: username })
       .then(function (user){
@@ -57,7 +57,7 @@ passport.use(new LocalStrategy(
           return done(err)
         })
   })
-)
+)*/
 
 
 var indexRouter = require('./routes/index');
