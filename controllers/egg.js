@@ -32,8 +32,12 @@ exports.egg_create_post = async function(req, res) {
         res.send(result);
     }
     catch(err) {
-        res.status(500);
-        res.send(`{"error":${err}}`);
+        console.log("Validation error:", err.message);
+        let message = Object.values(err.errors || {}).map(e => e.message).join(', ');
+        
+            res.status(400).render('eggcreate', {
+                title: 'Egg Create', error: message, formData: req.body
+            })
     }
 }
 exports.egg_delete = async function(req, res) {
