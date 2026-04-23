@@ -79,9 +79,9 @@ exports.egg_view_all_Page = async function(req, res) {
     }
 }
 exports.egg_view_one_Page = async function (req,res) {
-    console.log("single view for id " + req.query.id)
+    console.log("single view for id " + req.params.id)
     try{ 
-        result = await Egg.findById(req.query.id)
+        result = await Egg.findById(req.params.id)
         res.render('eggdetail', 
             { title: 'Egg Detail', toShow: result });
     } catch (err) {
@@ -100,19 +100,19 @@ exports.egg_create_Page = function (req, res) {
     }
 }
 exports.egg_update_Page = async function (req, res) {
-    console.log("Update view for item " + req.query.id)
-    try {
-        let result = await Egg.findById(req.query.id)
+    console.log("Update view for item " + req.params.id)
+        let result = await Egg.findById(req.params.id)
+        if (!result) {
+            return res.status(404).send("Egg not found");
+        }
         res.render('eggupdate', { title: 'Egg Update', toShow: result })
-    } catch(err) {
-        res.status(500)
-        res.send(`{'error':'${err}'}`);
-    }
+
+    
 }
 exports.egg_delete_Page = async function (req, res) {
-    console.log("Delete view for id " + req.query.id)
+    console.log("Delete view for id " + req.params.id)
     try {
-        result = await Egg.findById(req.query.id)
+        result = await Egg.findById(req.params.id)
         res.render('eggdelete', { title: 'Egg Delete', toShow: result })
     } catch(err) {
         res.status(500)
